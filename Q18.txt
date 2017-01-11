@@ -1,0 +1,9 @@
+SELECT ?g ?s ?p ?o 
+
+WHERE {
+
+	?s a kennedys:Person GRAPH ?g { ?s ?o ?p } .
+
+	FILTER (?g != <http://topbraid.org/examples/kennedys>)
+
+}

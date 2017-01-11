@@ -1,0 +1,19 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+CONSTRUCT {?s owl:sameAs ?sub}
+WHERE {
+	?s kennedys:firstName ?firstName ;
+         kennedys:middleName ?middle .
+
+	BIND (CONCAT(?firstName, " ", ?middle) AS ?halfName)
+  
+	SERVICE <http://dbpedia.org/sparql> {
+	    ?sub a foaf:Person .
+		?sub rdfs:label ?n .
+		
+		FILTER regex (str(?n), "Kennedy", "i") .
+	} 
+
+	FILTER regex (str(?n), str(?halfName), "i") .
+}
+LIMIT 30

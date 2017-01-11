@@ -1,0 +1,6 @@
+SELECT DISTINCT ?p ?d ?r
+WHERE {
+	?s ?p ?o .
+	?p rdfs:domain ?d ;
+	   rdfs:range ?r .
+}
