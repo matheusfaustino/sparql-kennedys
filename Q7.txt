@@ -1,0 +1,17 @@
+SELECT 	?name ?death ?age
+
+WHERE {
+
+	?s rdf:type kennedys:Person ;
+
+		 kennedys:name ?name ;
+
+		 kennedys:deathYear ?death ;
+
+		 kennedys:birthYear ?birth .
+
+	BIND ((?death - ?birth) AS ?age)
+
+	FILTER (YEAR(NOW()) - ?death < 30)
+
+}

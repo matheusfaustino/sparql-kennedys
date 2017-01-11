@@ -1,0 +1,9 @@
+SELECT ?p
+
+WHERE {
+
+	?p rdf:type kennedys:Person .
+
+	FILTER NOT EXISTS {?p kennedys:parent ?parent} 
+
+}

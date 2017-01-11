@@ -1,0 +1,25 @@
+SELECT ?p ?pere ?mere
+
+WHERE {
+
+	?p rdf:type kennedys:Person .
+
+	OPTIONAL {
+
+		?p kennedys:parent ?pere .
+
+		?pere kennedys:gender kennedys:male .
+
+	}
+
+	OPTIONAL {
+
+		?p kennedys:parent ?mere .
+
+		?mere kennedys:gender kennedys:female .
+
+	}
+
+	FILTER ( bound(?mere) && bound(?pere))
+
+}

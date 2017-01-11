@@ -1,0 +1,11 @@
+SELECT DISTINCT *
+
+WHERE {
+
+	?s rdf:type kennedys:Person ;
+
+		 kennedys:profession ?prof .
+
+	FILTER (?prof = kennedys:senator || ?prof = kennedys:governor)
+
+}

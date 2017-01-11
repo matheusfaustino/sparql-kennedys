@@ -1,0 +1,23 @@
+SELECT DISTINCT ?couple  (COUNT(?children) AS ?nombre)
+
+WHERE {
+
+	?person rdf:type kennedys:Person ;
+
+		kennedys:spouse ?spouse ;
+
+   		kennedys:child ?children .
+
+	?children kennedys:parent ?parents .
+
+	FILTER (?parents = ?spouse) .
+
+	?person kennedys:name ?person_name .
+
+	?spouse kennedys:name ?couple_name .
+
+	BIND (CONCAT(?person_name,"/" ,?couple_name) as ?couple) .	
+
+}
+
+GROUP BY ?couple

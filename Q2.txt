@@ -1,0 +1,13 @@
+SELECT ?pere ?mere
+
+WHERE {
+
+	kennedys:CarolineKennedy kennedys:parent ?pere .
+
+	?pere kennedys:gender kennedys:male .
+
+	kennedys:CarolineKennedy kennedys:parent ?mere .
+
+	?mere kennedys:gender kennedys:female .
+
+}

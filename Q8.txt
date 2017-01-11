@@ -1,0 +1,11 @@
+SELECT 	?name
+
+WHERE {
+
+	?s rdf:type kennedys:Person ;
+
+		 kennedys:name ?name .
+
+	FILTER (regex(?name, "jo", "i"))
+
+}

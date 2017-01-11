@@ -1,0 +1,13 @@
+SELECT DISTINCT ?s  (COUNT(?children) AS ?nombre)
+
+WHERE {
+
+	?s rdf:type kennedys:Person ;
+
+		 kennedys:child ?children .
+
+}
+
+GROUP BY ?s
+
+HAVING (?nombre > 4)

@@ -1,0 +1,15 @@
+SELECT DISTINCT ?s ?prof ?children ?children_profs
+
+WHERE {
+
+	?s kennedys:parent ?parents ;
+
+		 kennedys:profession ?prof .
+
+	?parents kennedys:child ?children .
+
+	?children kennedys:profession ?children_profs .
+
+	FILTER (?s != ?children && ?prof = ?children_profs)
+
+}

@@ -1,0 +1,27 @@
+SELECT ?total ?hasNot (?hasNot*100/?total as ?percentage)
+
+WHERE {
+
+	{
+
+		SELECT (COUNT(*) AS ?total) WHERE {
+
+			?s rdf:type kennedys:Person .
+
+		}
+
+	} .
+
+	{
+
+		SELECT (COUNT(*) AS ?hasNot) WHERE {
+
+			?s rdf:type kennedys:Person .
+
+			FILTER NOT EXISTS {?s kennedys:child ?child} .
+
+		}
+
+	} .
+
+}

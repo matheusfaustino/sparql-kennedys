@@ -1,0 +1,21 @@
+SELECT ?s ?prof ?pere ?pprof ?mere ?mprof
+
+WHERE {
+
+	?s kennedys:profession ?prof ;
+
+		 kennedys:parent ?pere ;
+
+         kennedys:parent ?mere .
+
+	?pere kennedys:gender kennedys:male ;
+
+			   kennedys:profession ?pprof .
+
+	?mere kennedys:gender kennedys:female ;
+
+				kennedys:profession ?mprof .
+
+	FILTER (?prof = ?pprof || ?prof = ?mprof)
+
+}

@@ -1,0 +1,83 @@
+SELECT DISTINCT ?cousing
+
+WHERE {
+
+	kennedys:CarolineKennedy kennedys:parent ?pere .
+
+	?pere kennedys:gender kennedys:male .
+
+	kennedys:CarolineKennedy kennedys:parent ?mere .
+
+	?mere kennedys:gender kennedys:female .
+
+	{
+
+	OPTIONAL {
+
+		?mere kennedys:parent ?mgranma .
+
+		?mgranma kennedys:gender kennedys:female .
+
+		?mere kennedys:parent ?mgranpa .
+
+		?mgranpa kennedys:gender kennedys:male .
+
+		?mgranpa kennedys:child ?mpchild .
+
+		?mgranpa kennedys:child ?mmchild .
+
+		FILTER (?mpchild != ?pere && ?mmchild != ?pere) 
+
+		{
+
+			?mpchild kennedys:child ?cousing
+
+		} UNION
+
+		{
+
+			?mmchild kennedys:child ?cousing
+
+		}
+
+	}
+
+	}
+
+	UNION
+
+	{
+
+	OPTIONAL {
+
+		?pere kennedys:parent ?pgranma .
+
+		?pgranma kennedys:gender kennedys:female .
+
+		?pere kennedys:parent ?pgranpa .
+
+		?pgranpa kennedys:gender kennedys:male .	
+
+		?pgranpa kennedys:child ?ppchild .
+
+		?pgranma kennedys:child ?pmchild . 
+
+		FILTER (?ppchild != ?pere && ?pmchild != ?pere)
+
+		{
+
+			?ppchild kennedys:child ?cousing
+
+		} UNION
+
+		{
+
+			?pmchild kennedys:child ?cousing
+
+		}
+
+	} 
+
+	}
+
+}

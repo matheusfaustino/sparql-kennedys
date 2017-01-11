@@ -1,0 +1,15 @@
+SELECT ?1s ?2s
+
+WHERE {
+
+	?1s rdf:type kennedys:Person ;
+
+		 kennedys:firstName ?1firstName .
+
+	?2s rdf:type kennedys:Person ;
+
+		 kennedys:firstName ?2firstName .
+
+	FILTER (?1s != ?2s && ?1firstName = ?2firstName)
+
+}
